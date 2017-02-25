@@ -124,4 +124,8 @@ public class Calculo {
 		}
 		return lista;
 	}
+	
+	public int novoMetodo(){
+		return 1 + 1;
+	}
 }
