@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle de Ponto - ThIJpB</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="#fazerLogin" onclick="document.getElementById('id01').style.display='block'">Bater Ponto</a></li>
+            <li><a href="cartaoponto.html">Modelo Cartão Ponto</a></li>
+            <li><a href="admin.html">Modelo Admin</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <div class="conteudoPrincipal">
+        <img src="img/login.png">
+        <p>Controle de Ponto ThIJpB</p>
+
+        <p>Entre no sistema para registrar seu ponto!</p>
+    </div>
+</section>
+
+<footer>
+    <div>ThIJpB - Projeto Interdisciplinar Opet 2017</div>
+</footer>
+
+
+<div id="id01" class="modal">
+
+    <form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="img/login.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label><b>Nome de usuário</b></label>
+            <input type="text" placeholder="Usuário" name="uname" required>
+
+            <label><b>Senha</b></label>
+            <input type="password" placeholder="Senha" name="psw" required>
+
+            <button type="submit">Entrar</button>
+            <input type="checkbox" checked="checked"> Lembrar-me
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancelar</button>
+        </div>
+    </form>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
