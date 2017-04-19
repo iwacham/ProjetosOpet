@@ -31,19 +31,19 @@ public class Hora {
 			
 			
 			//TODO
-			//Condição que limita o valor de segundos e minutos para 59 e Hora para 24
+			//CondiÃ§Ã£o que limita o valor de segundos e minutos para 59 e Hora para 24
 			
 			
 			
 			//Adiciona o valor passado aos Segundos
 			horaSeparada[2] = horaSeparada[2] + valor;
 			
-			//Condição para aumentar minutos
+			//CondiÃ§Ã£o para aumentar minutos
 			if(horaSeparada[2] == 59){
 				horaSeparada[1]++;
 			}
 			
-			//Condição para aumentar a Hora
+			//CondiÃ§Ã£o para aumentar a Hora
 			if(horaSeparada[1] == 59 && horaSeparada[2] == 59){
 				horaSeparada[0]++;
 			}
@@ -52,4 +52,12 @@ public class Hora {
 			cData = String.valueOf(horaSeparada[0] + ":" + horaSeparada[1] + ":" + horaSeparada[2]);
 			System.out.println("Novo Horario: " + cData);
 		}
+	
+	//Exemplo
+	public void horaExemplo(){
+		Date today = new Date();
+		Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24 * 3));
+		
+		System.out.println(tomorrow);
+	}
 }
