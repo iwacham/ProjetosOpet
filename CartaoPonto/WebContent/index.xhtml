@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Controle de Ponto</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body>
+	<header>
+    <nav>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="#fazerLogin" onclick="document.getElementById('id01').style.display='block'">Bater Ponto</a></li>
+            <li><a href="cartaoponto.html">Modelo Cartão Ponto</a></li>
+            <li><a href="admin.html">Modelo Admin</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <div class="conteudoPrincipal">
+        <img class="img-center" src="img/login.png" />
+        <p class="text-center">Controle de Ponto</p>
+
+        <p class="text-center">Entre no sistema para registrar seu ponto!</p>
+    </div>
+</section>
+
+<footer>
+    <div>ThIJpB - Projeto Interdisciplinar Opet 2017</div>
+</footer>
+
+
+<div id="id01" class="modal">
+
+    <h:form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="img/login.png" alt="Avatar" class="avatar" />
+        </div>
+
+        <div class="container">
+            <h:outputLabel value="Usuário: " />
+            <h:inputText value="#{cadastroFuncionario.user}" name="user" p:placeholder="Nome de Usuário" p:required="true" />
+            <h:inputText value="#{cadastroFuncionario.pass}" name="pass" p:placeholder="Sua senha" p:required="true" />
+            <h:commandButton styleClass="mybutton" action="#{cadastroFuncionario.fazerLogin()}" value="Entrar" />
+            
+        </div>
+    </h:form>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

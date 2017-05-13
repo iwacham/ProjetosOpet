@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+<title>Cartão Ponto - Cadastro Funcionários</title>
+</h:head> 
+<body> 
+
+<h:form>
+	<h:outputLabel value="Nome: " />
+	<h:inputText value="#{cadastroFuncionario.nome}" />
+	<h:outputLabel value="Data Aniversário: " />
+	<h:inputText value="#{cadastroFuncionario.dtNiver}" />
+	<h:outputLabel value="CPF: " />
+	<h:inputText value="#{cadastroFuncionario.cpf}" />
+	<h:outputLabel value="Telefone: " />
+	<h:inputText value="#{cadastroFuncionario.telefone}" />
+	<h:commandButton action="#{cadastroFuncionario.fazerCadastro()}" value="CADASTRAR" />
+</h:form>
+
+</body> 
+</html>
