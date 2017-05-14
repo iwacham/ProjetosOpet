@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Cartão Ponto - Lista de Funcionários</title>
+	<link href="../css/style.css" rel="stylesheet" />
+</h:head>
+<h:body>
+
+	<header> <nav>
+	<ul>
+		<h:form>
+			<li><a class="active" href="index.html">Home</a></li>
+			<li><h:commandLink action="cadastroFuncionario"
+					value="Novo Funcionario" /></li>
+			<li><h:commandLink action="listaFuncionario"
+					value="Listar Funcionários" /></li>
+		</h:form>
+	</ul>
+	</nav> </header>
+
+	<section>
+	<div class="conteudoPrincipal">
+		<p>Nome do Funcionário | Setor/Cargo | IDENTIFICADOR</p>
+		<p>
+			<button class="mybutton">ENTRAR</button>
+			|
+			<button class="mybutton">INTERVALO S</button>
+			|
+			<button class="mybutton">INTERVALO V</button>
+			|
+			<button class="mybutton">SAÍDA</button>
+		</p>
+		<table>
+			<thead>
+				<tr>
+					<td>Nome</td>
+					<td>Data Nascimento</td>
+					<td>CPF</td>
+					<td>Telefone</td>
+				</tr>
+			</thead>
+			<h:form>
+				<ui:repeat var="func" value="#{cadastroFuncionario.lista}">
+
+					<tr>
+						<td><h:outputText value="#{func.nome}" /></td>
+						<td><h:outputText value="#{func.dtNiver}" /></td>
+						<td><h:outputText value="#{func.cpf}" /></td>
+						<td><h:outputText value="#{func.telefone}" /></td>
+
+					</tr>
+
+				</ui:repeat>
+			</h:form>
+		</table>
+	</div>
+	</section>
+	<footer>
+	<div>Cartão Ponto</div>
+	</footer>
+
+
+</h:body>
+</html>

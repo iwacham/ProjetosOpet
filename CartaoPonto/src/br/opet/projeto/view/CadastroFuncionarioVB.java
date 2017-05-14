@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import br.opet.projeto.controller.FuncionarioController;
 import br.opet.projeto.model.Funcionario;
@@ -24,7 +25,11 @@ public class CadastroFuncionarioVB {
 
 	public void fazerCadastro() {
 		funcionario = new Funcionario(nome, new Date(), cpf, telefone, 0, "NDA", "NDA");
-		funcionarioController.inserir(funcionario);
+		if(funcionarioController.inserir(funcionario)){
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
+		}else{
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
+		}
 	}
 
 	public void fazerLogin() {
