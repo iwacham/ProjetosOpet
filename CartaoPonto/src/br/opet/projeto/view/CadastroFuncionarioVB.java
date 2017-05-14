@@ -19,17 +19,18 @@ public class CadastroFuncionarioVB {
 	private String pass;
 
 	private String nome;
-	private Date dtNiver;
 	private long cpf;
 	private int telefone;
 
 	public void fazerCadastro() {
-		funcionario = new Funcionario(nome, dtNiver, cpf, telefone, 0, "NDA", "NDA");
+		funcionario = new Funcionario(nome, new Date(), cpf, telefone, 0, "NDA", "NDA");
 		funcionarioController.inserir(funcionario);
 	}
 
 	public void fazerLogin() {
 		if (funcionarioController.fazerLogin(user, pass)) {
+			System.out.println("usuário" + user);
+			System.out.println("Senha: " + pass);
 			System.out.println("Deu certo!");
 		} else {
 			System.out.println("Login deu errado!");
@@ -89,14 +90,6 @@ public class CadastroFuncionarioVB {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public Date getDtNiver() {
-		return dtNiver;
-	}
-
-	public void setDtNiver(Date dtNiver) {
-		this.dtNiver = dtNiver;
 	}
 
 	public long getCpf() {
