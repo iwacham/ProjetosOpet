@@ -22,6 +22,21 @@ public class CadastroFuncionarioVB {
 	private String nome;
 	private long cpf;
 	private int telefone;
+	
+	public String atualiza(Funcionario func){
+		this.funcionario = func;
+		
+		return "alterarFuncionario";
+	}
+	
+	public void fazerAlteracoes(){
+		System.out.println("CPF: " + this.funcionario.getCpf());
+		if(funcionarioController.atualizar(this.funcionario)){
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
+		}else{
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
+		}
+	}
 
 	public void fazerCadastro() {
 		funcionario = new Funcionario(nome, new Date(), cpf, telefone, 0, "NDA", "NDA");

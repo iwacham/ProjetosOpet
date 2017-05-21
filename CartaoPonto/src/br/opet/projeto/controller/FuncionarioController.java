@@ -69,9 +69,9 @@ public class FuncionarioController implements IAbstractDAO<Funcionario> {
 			st.setDate(2, new java.sql.Date(entidade.getDtNiver().getTime()));
 			st.setLong(3, entidade.getCpf());
 			st.setInt(4, entidade.getTelefone());
-			if(st.executeUpdate() != 0){
+			if (st.executeUpdate() != 0) {
 				cadastro = true;
-			}else{
+			} else {
 				cadastro = false;
 			}
 		} catch (Exception e) {
@@ -86,15 +86,33 @@ public class FuncionarioController implements IAbstractDAO<Funcionario> {
 	@Override
 	public boolean atualizar(Funcionario entidade) {
 		Connection conn = null;
-		List<Funcionario> lista = new ArrayList<>();
+		boolean resultado = false;
 		try {
-
+			conn = DbConnect.getConnection();
+			PreparedStatement st = DbConnect.getPreparedStatement(conn,
+					"UPDATE CARTAO_PONTO SET nome = ?, dtNiver = ?, telefone = ? WHERE cpf = ?");
+			st.setString(1, entidade.getNome());
+			st.setDate(2, new java.sql.Date(entidade.getDtNiver().getTime()));
+			st.setInt(3, entidade.getTelefone());
+			st.setLong(4, entidade.getCpf());
+			if(st.executeUpdate() != 0){
+				resultado = true;
+			}else{
+				System.out.println("VALOR DE CPF: " +entidade.getCpf());
+				resultado = false;
+			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
-
+			if(conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		return false;
+		return resultado;
 	}
 
 	@Override

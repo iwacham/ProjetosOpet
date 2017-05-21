@@ -35,29 +35,39 @@
 			<button class="mybutton">SAÍDA</button>
 		</p>
 		<table>
-			<thead>
-				<tr>
-					<td>Nome</td>
-					<td>Data Nascimento</td>
-					<td>CPF</td>
-					<td>Telefone</td>
-					<td></td>
-				</tr>
-			</thead>
+
 			<h:form>
-				<ui:repeat var="func" value="#{cadastroFuncionario.lista}">
+				<tr>
+					<td>Nome:</td>
+					<td><h:inputText class="myinput"
+							value="#{cadastroFuncionario.funcionario.nome}" />
+							
+							<h:inputHidden value="#{cadastroFuncionario.funcionario.cpf}" />
+							</td>
+				</tr>
 
-					<tr>
-						<td><h:outputText value="#{func.nome}" /></td>
-						<td><h:outputText value="#{func.dtNiver}" /></td>
-						<td><h:outputText value="#{func.cpf}" /></td>
-						<td><h:outputText value="#{func.telefone}" /></td>
-						<td><h:commandButton action="#{cadastroFuncionario.atualiza(func)}" value="Editar">
-												</h:commandButton> - Excluir</td>
-					</tr>
+				<tr>
+					<td>CPF:</td>
+					<td><h:inputText class="myinput"
+							value="#{cadastroFuncionario.funcionario.cpf}" /></td>
+				</tr>
 
-				</ui:repeat>
+				<tr>
+					<td>Telefone:</td>
+					<td><h:inputText class="myinput"
+							value="#{cadastroFuncionario.funcionario.telefone}" /></td>
+				</tr>
+
+				<tr>
+					<td><h:commandButton class="mybutton"
+							action="#{cadastroFuncionario.fazerAlteracoes()}" value="ATUALIZAR" /></td>
+				</tr>
+
+
 			</h:form>
+
+
+
 		</table>
 	</div>
 	</section>
