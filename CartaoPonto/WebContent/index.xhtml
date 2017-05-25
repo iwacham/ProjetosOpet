@@ -38,17 +38,17 @@
 
 <div id="id01" class="modal">
 
-    <h:form class="modal-content animate" action="/action_page.php">
+    <h:form class="modal-content animate">
         <div class="imgcontainer">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
             <img src="img/login.png" alt="Avatar" class="avatar" />
         </div>
 
         <div class="container">
-            <h:outputLabel value="Usuário: " />
-            <h:inputText value="#{cadastroFuncionario.user}" name="user" p:placeholder="Nome de Usuário" p:required="true" />
-            <h:inputText value="#{cadastroFuncionario.pass}" name="pass" p:placeholder="Sua senha" p:required="true" />
-            <h:commandButton styleClass="mybutton" action="#{cadastroFuncionario.fazerLogin()}" value="Entrar" />
+            <h:outputLabel value="Busca: " />
+            <h:inputText value="#{cadastroFuncionario.busca}" name="busca" p:placeholder="Procurar" p:required="true" />
+            
+            <h:commandButton styleClass="mybutton" action="#{cadastroFuncionario.buscaFuncionario()}" value="Entrar" />
             
         </div>
     </h:form>

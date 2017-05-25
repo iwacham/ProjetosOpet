@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface IAbstractDAO<T> {
 	List<T> listarTodos() throws SQLException;
-	T procuraPorId(int id);
+	List<T> procuraPorId(long id);
 	boolean inserir(T entidade);
 	boolean atualizar(T entidade);
-	boolean deletar(int id);
+	boolean deletar(T entidade);
 	boolean fazerLogin(String user, String pass);
 }

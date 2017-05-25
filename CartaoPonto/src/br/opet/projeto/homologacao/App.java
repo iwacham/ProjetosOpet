@@ -8,12 +8,18 @@ import br.opet.projeto.model.Funcionario;
 public class App {
 
 	public static void main(String[] args) {
-		FuncionarioController fc = new FuncionarioController();
-
-		for (Funcionario func : fc.listarTodos()) {
-			System.out.println(func.getNome());
-		}
-
+//		FuncionarioController fc = new FuncionarioController();
+//
+//		for (Funcionario func : fc.listarTodos()) {
+//			System.out.println(func.getNome());
+//		}
+		
+		String x = "123456789";
+		
+		String y = "Tiago";
+		
+		if()
+		
 	}
 
 }

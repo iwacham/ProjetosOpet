@@ -1,0 +1,9 @@
+class pessoa;
+
+cpf
+data nascimento
+nome
+telefone
+
+class funcionario
+cargo

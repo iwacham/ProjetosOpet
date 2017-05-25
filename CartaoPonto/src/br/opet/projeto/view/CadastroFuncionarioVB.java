@@ -18,38 +18,78 @@ public class CadastroFuncionarioVB {
 	private List<Funcionario> lista;
 	private String user;
 	private String pass;
+	
+	private long busca;
 
 	private String nome;
 	private long cpf;
 	private int telefone;
 	
-	public String atualiza(Funcionario func){
+	//ConteudoDaBusca
+	public List<Funcionario> listaBusca(){
+		
+		return this.lista;
+	}
+	
+	//buscarFuncionario
+	public String buscaFuncionario(){
+		System.out.println("VALOR: " + this.busca);
+		this.lista = funcionarioController.procuraPorId(this.busca);
+		
+		for (Funcionario funcionario : lista) {
+			System.out.println("Nome: " + funcionario.getNome());
+		}
+		
+		return "/admin/buscarFunc";
+	}
+
+	//Nome: excluir
+	public void deletar(Funcionario func) {
+		this.funcionario = func;
+
+		if (funcionarioController.deletar(func)) {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
+		} else {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
+		}
+	}
+
+	//Nome editar
+	public String atualiza(Funcionario func) {
 		this.funcionario = func;
 		
 		return "alterarFuncionario";
 	}
-	
-	public void fazerAlteracoes(){
+
+	//
+	public void fazerAlteracoes() {
 		System.out.println("CPF: " + this.funcionario.getCpf());
-		if(funcionarioController.atualizar(this.funcionario)){
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
-		}else{
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
+		if (funcionarioController.atualizar(this.funcionario)) {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
+			
+		} else {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
 		}
 	}
 
 	public void fazerCadastro() {
 		funcionario = new Funcionario(nome, new Date(), cpf, telefone, 0, "NDA", "NDA");
-		if(funcionarioController.inserir(funcionario)){
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
-		}else{
-			FacesContext.getCurrentInstance().getApplication().getNavigationHandler().handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
+		if (funcionarioController.inserir(funcionario)) {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/sucesso.xhtml");
+		} else {
+			FacesContext.getCurrentInstance().getApplication().getNavigationHandler()
+					.handleNavigation(FacesContext.getCurrentInstance(), null, "/cadastro/erro.xhtml");
 		}
 	}
 
-	public void fazerLogin() {
+	public void login() {
 		if (funcionarioController.fazerLogin(user, pass)) {
-			System.out.println("usuário" + user);
+			System.out.println("usuário: " + user);
 			System.out.println("Senha: " + pass);
 			System.out.println("Deu certo!");
 		} else {
@@ -126,6 +166,14 @@ public class CadastroFuncionarioVB {
 
 	public void setTelefone(int telefone) {
 		this.telefone = telefone;
+	}
+
+	public long getBusca() {
+		return busca;
+	}
+
+	public void setBusca(long busca) {
+		this.busca = busca;
 	}
 
 }

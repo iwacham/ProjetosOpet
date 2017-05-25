@@ -44,17 +44,28 @@ public class FuncionarioController implements IAbstractDAO<Funcionario> {
 	}
 
 	@Override
-	public Funcionario procuraPorId(int id) {
+	public List<Funcionario> procuraPorId(long busca) {
 		Connection conn = null;
 		List<Funcionario> lista = new ArrayList<>();
 		try {
-
+			conn = DbConnect.getConnection();
+			System.out.println("VALOR Controller: " + busca);
+			ResultSet rs = DbConnect.getResultSet(conn, "SELECT * FROM CARTAO_PONTO WHERE cpf = " + busca);
+			while(rs.next()){
+				
+				
+				Funcionario func = new Funcionario(rs.getString("nome"),
+						new java.util.Date(rs.getDate("dtNiver").getDate()), rs.getLong("cpf"), rs.getInt("telefone"),
+						1000, "Analise de Sistemas", "Rua das Palmeiras");
+				lista.add(func);
+				
+			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 
 		}
-		return null;
+		return lista;
 	}
 
 	@Override
@@ -116,7 +127,7 @@ public class FuncionarioController implements IAbstractDAO<Funcionario> {
 	}
 
 	@Override
-	public boolean deletar(int id) {
+	public boolean deletar(Funcionario func) {
 		Connection conn = null;
 		List<Funcionario> lista = new ArrayList<>();
 		try {
@@ -135,8 +146,11 @@ public class FuncionarioController implements IAbstractDAO<Funcionario> {
 		boolean fezLogin = false;
 		try {
 			conn = DbConnect.getConnection();
-			ResultSet rs = DbConnect.getResultSet(conn,
-					"SELECT * FROM CARTAO_PONTO WHERE nome = '" + user + "' cpf = " + Long.valueOf(pass));
+			PreparedStatement pst = DbConnect.getPreparedStatement(conn, "SELECT * FROM CARTAO_PONTO WHERE nome = ? AND cpf = ?");
+			pst.setString(1, user);
+			pst.setString(2, pass);
+			//"SELECT * FROM CARTAO_PONTO WHERE nome = '" + user + " AND ' cpf = " + Long.valueOf(pass)
+			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
 				fezLogin = true;
 			} else {
